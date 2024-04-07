@@ -1,4 +1,15 @@
 import express from "express";
+import conectaDataBase from "./config/dbconnect.js";
+
+const conexao = await conectaDataBase();
+
+conexao.on("error", (error) =>{
+    console.error("Erro de conexão", erro);
+});
+
+conexao.once("open", () => {
+    console.log("Conexão com o banco feita com sucesso.");
+});
 
 const app = express();
 app.use(express.json()); //Função middleware do tipo json
@@ -54,6 +65,5 @@ app.delete("/livros/:id", (req, res) => {
     livros.splice(index, 1);
     res.status(200).send("livro removido com sucesso");
 })
-
 
 export default app;
