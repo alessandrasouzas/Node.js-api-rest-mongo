@@ -1,8 +1,8 @@
 import express from "express";
 import conectaDataBase from "./config/dbconnect.js";
+import livro from "./models/Livro.js";
 
 const conexao = await conectaDataBase();
-
 conexao.on("error", (error) =>{
     console.error("Erro de conexão", erro);
 });
@@ -19,29 +19,13 @@ app.use(express.json()); //Função middleware do tipo json
         A próxima função middleware é comumente denotada por uma variável chamada next.
 */
 
-const livros = [
-    {
-        id: 1,
-        titulo: "O senhor dos Anéis"
-    },
-    {
-        id: 2,
-        titulo: "O Hobbit"
-    }    
-]
-
-function buscaLivro(id) {
-    return livros.findIndex(livros => {
-        return livros.id === Number(id)
-    })
-};
-
 app.get("/", (req, res) => {
     res.status(200).send('Curso de Node.js')
 });
 
-app.get("/livros", (req, res) => {
-    res.status(200).json(livros);
+app.get("/livros", async (req, res) => {
+    const listaLivros = await livro.find({});
+    res.status(200).json(listaLivros);
 });
 
 app.get("/livros/:id", (req, res) => {
