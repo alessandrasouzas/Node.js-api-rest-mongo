@@ -9,7 +9,7 @@ class AutorController {
        } catch (error) {
             res.status(500).json({ message: `${error.message} - falha ao listar livros`});
        }
-    }
+    };
 
     static async cadastrarAutores (req, res) {
         try {
@@ -21,7 +21,7 @@ class AutorController {
         } catch (error) {
             res.status(500).json({ message: `${error.message} - falha ao cadastrar autor`});
         }        
-    }
+    };
 
     static async listarAutorPorId (req, res) {      
        try {
@@ -31,7 +31,7 @@ class AutorController {
        } catch (error) {
             res.status(500).json({ message: `${error.message} - falha ao listar o autor`});
        }
-    }
+    };
 
     static async atualizarAutor (req, res) {      
         try {
@@ -41,7 +41,7 @@ class AutorController {
         } catch (error) {
              res.status(500).json({ message: `${error.message} - falha ao atualizar autor`});
         }
-    }
+    };
 
     static async excluirAutorPorId (req, res) {      
         try {
@@ -51,7 +51,7 @@ class AutorController {
         } catch (error) {
              res.status(500).json({ message: `${error.message} - falha ao remover o autor`});
         }
-    }
+    };
 
 };
 
